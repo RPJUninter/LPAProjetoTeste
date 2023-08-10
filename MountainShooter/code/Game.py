@@ -13,11 +13,9 @@ class Game:
         self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
 
     def loop(self):
-        menu_return = None
-        level_return = None
         while True:
             menu = Menu(self.window)
             menu_return = menu.loop()
             if menu_return in [MENU_OPTION[0], MENU_OPTION[1], MENU_OPTION[2]]:
-                for level in [Level(self.window, "Level1", menu_return)]:
-                    level_return = level.loop()
+                new_level = Level(self.window, "Level1", menu_return)
+                new_level.loop()

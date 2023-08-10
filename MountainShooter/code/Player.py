@@ -1,13 +1,35 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+import pygame.key
 
-from Entity import Entity
+from code.Constant import KEY_UP, ENTITY_PIXEL_MOV, KEY_RIGHT, KEY_DOWN, KEY_LEFT, WIN_WIDTH, WIN_HEIGHT, KEY_SHOT
+from code.Entity import Entity
+from code.PlayerShot import PlayerShot
+
 
 class Player(Entity):
-    def __init__(self):
-        pass
+    def __init__(self, name: str, position: tuple):
+        super().__init__(name, position)
 
+    def move(self):
+        pressed_key = pygame.key.get_pressed()
+        if pressed_key[KEY_UP[self.name]] and self.rect.top > 0:
+            self.rect.centery -= ENTITY_PIXEL_MOV[self.name]
 
-    def move(self, ):
-        pass
+        if pressed_key[KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:
+            self.rect.centerx += ENTITY_PIXEL_MOV[self.name]
 
+        if pressed_key[KEY_DOWN[self.name]] and self.rect.bottom < WIN_HEIGHT:
+            self.rect.centery += ENTITY_PIXEL_MOV[self.name]
+
+        if pressed_key[KEY_LEFT[self.name]] and self.rect.left > 0:
+            self.rect.centerx -= ENTITY_PIXEL_MOV[self.name]
+
+    def shoot(self):
+        pressed_key = pygame.key.get_pressed()
+        if pressed_key[KEY_SHOT[self.name]]:
+            return PlayerShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))
+
+    def update(self):
+        self.move()
+        return self.shoot()

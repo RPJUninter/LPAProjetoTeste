@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 import pygame.image
 
-from code.Constant import ENTITY_MOV_DELAY
+from code.Constant import ENTITY_PIXEL_MOV
 
 
 class Entity(ABC):
@@ -12,8 +12,12 @@ class Entity(ABC):
         self.name = name
         self.surf = pygame.image.load('./asset/' + name + '.png')
         self.rect = self.surf.get_rect(left=position[0], top=position[1])
-        self.mov_delay = ENTITY_MOV_DELAY[name]
+        self.mov_delay = ENTITY_PIXEL_MOV[name]
 
     @abstractmethod
     def move(self):
+        pass
+
+    @abstractmethod
+    def update(self):
         pass

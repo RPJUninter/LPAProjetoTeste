@@ -5,7 +5,7 @@ import sys
 import pygame
 from pygame import Surface
 
-from code.Constant import EVENT_ENEMY_NUM, EVENT_ENEMY_TIME
+from code.Constant import EVENT_ENEMY_NUM, EVENT_ENEMY_TIME, MENU_OPTION
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
@@ -18,6 +18,8 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity(name=f'{self.name}Bg'))
         self.entity_list.append(EntityFactory.get_entity(name='Player1'))
+        if mode in [MENU_OPTION[1], MENU_OPTION[2]]:
+            self.entity_list.append(EntityFactory.get_entity(name='Player2'))
         pygame.time.set_timer(EVENT_ENEMY_NUM, EVENT_ENEMY_TIME[self.name])
 
     def loop(self):

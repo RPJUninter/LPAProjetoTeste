@@ -25,5 +25,17 @@ class EntityFactory(ABC):
             case 'Player1':
                 return Player(name='Player1', position=(30, WIN_HEIGHT / 2 - 30))
 
+            case 'Player2':
+                return Player(name='Player2', position=(30, WIN_HEIGHT / 2 + 30))
+
             case 'Enemy1':
                 return Enemy(name='Enemy1', position=(WIN_WIDTH, random.randint(30, WIN_HEIGHT - 30)))
+
+            case 'Enemy2':
+                return Enemy(name='Enemy2', position=(WIN_WIDTH, random.randint(30, WIN_HEIGHT - 30)))
+
+            case 'Enemy3':
+                return Enemy(name='Enemy3', position=(WIN_WIDTH, random.randint(30, WIN_HEIGHT - 30)))
+
+            case 'Enemy4':
+                return Enemy(name='Enemy4', position=(WIN_WIDTH, random.randint(30, WIN_HEIGHT - 30)))

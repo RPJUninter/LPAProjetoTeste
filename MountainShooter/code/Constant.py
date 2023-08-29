@@ -13,7 +13,27 @@ MENU_OPTION = ('NEW GAME 1P',
 
 # E
 EVENT_ENEMY_NUM = pygame.USEREVENT + 1
-EVENT_ENEMY_TIME = {'Level1': 2000}
+EVENT_ENEMY_TIME = {'Level1': 3000}
+
+ENTITY_HEALTH = {'Level1Bg0': 9999,
+                 'Level1Bg1': 9999,
+                 'Level1Bg2': 9999,
+                 'Level1Bg3': 9999,
+                 'Level1Bg4': 9999,
+                 'Level1Bg5': 9999,
+                 'Level1Bg6': 9999,
+                 'Player1': 300,
+                 'Player1Shot': 1,
+                 'Player2': 300,
+                 'Player2Shot': 1,
+                 'Enemy1': 100,
+                 'Enemy1Shot': 1,
+                 'Enemy2': 100,
+                 'Enemy2Shot': 1,
+                 'Enemy3': 100,
+                 'Enemy3Shot': 1,
+                 'Enemy4': 100,
+                 'Enemy4Shot': 1}
 
 ENTITY_PIXEL_MOV = {'Level1Bg0': 0,
                     'Level1Bg1': 1,
@@ -35,20 +55,19 @@ ENTITY_PIXEL_MOV = {'Level1Bg0': 0,
                     'Enemy4': 3,
                     'Enemy4Shot': 4}
 
+ENTITY_SHOT_DELAY = {'Player1': 20,
+                     'Player2': 20,
+                     'Enemy1': 60,
+                     'Enemy2': 60,
+                     'Enemy3': 60,
+                     'Enemy4': 60}
+
 # K
 KEY_UP = {'Player1': pygame.K_w, 'Player2': pygame.K_UP}
 KEY_RIGHT = {'Player1': pygame.K_d, 'Player2': pygame.K_RIGHT}
 KEY_DOWN = {'Player1': pygame.K_s, 'Player2': pygame.K_DOWN}
 KEY_LEFT = {'Player1': pygame.K_a, 'Player2': pygame.K_LEFT}
 KEY_SHOT = {'Player1': pygame.K_LCTRL, 'Player2': pygame.K_RCTRL}
-
-# S
-SHOT_DELAY = {'Player1': 20,
-              'Player2': 20,
-              'Enemy1': 60,
-              'Enemy2': 60,
-              'Enemy3': 60,
-              'Enemy4': 60}
 
 #  W
 WIN_WIDTH = 576

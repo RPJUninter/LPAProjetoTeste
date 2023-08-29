@@ -3,11 +3,13 @@
 import sys
 
 import pygame
-from pygame import Surface
+from pygame import Surface, Rect
+from pygame.font import Font
 
-from code.Constant import EVENT_ENEMY_NUM, EVENT_ENEMY_TIME, MENU_OPTION
+from code.Constant import EVENT_ENEMY_NUM, EVENT_ENEMY_TIME, MENU_OPTION, COLOR_WHITE
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -34,6 +36,10 @@ class Level:
                 shot = ent.update()
                 if shot is not None:
                     self.entity_list.append(shot)
+            self.level_text(14, f'fps: {clock.get_fps() :.0f}', COLOR_WHITE, (10, 10))
+            self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, 30))
+            EntityMediator.verify_colission(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
             pygame.display.flip()  # atualizar tela
             for event in pygame.event.get():
                 # evento de fechar janela
@@ -43,3 +49,9 @@ class Level:
 
                 if event.type == EVENT_ENEMY_NUM:
                     self.entity_list.append(EntityFactory.get_entity('Enemy1'))
+
+    def level_text(self, text_size: int, text: str, text_color: tuple, text_position: tuple):
+        text_font: Font = pygame.font.SysFont(name='Lucida Sans Typewriter', size=text_size)
+        text_surf: Surface = text_font.render(text, True, text_color)
+        text_rect: Rect = text_surf.get_rect(left=text_position[0], top=text_position[1])
+        self.window.blit(source=text_surf, dest=text_rect)

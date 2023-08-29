@@ -3,7 +3,7 @@
 import pygame.key
 
 from code.Constant import KEY_UP, ENTITY_PIXEL_MOV, KEY_RIGHT, KEY_DOWN, KEY_LEFT, WIN_WIDTH, WIN_HEIGHT, KEY_SHOT, \
-    SHOT_DELAY
+    ENTITY_SHOT_DELAY
 from code.Entity import Entity
 from code.PlayerShot import PlayerShot
 
@@ -11,10 +11,11 @@ from code.PlayerShot import PlayerShot
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
-        self.shot_delay = SHOT_DELAY[self.name]
+        self.shot_delay = ENTITY_SHOT_DELAY[self.name]
 
     def move(self):
         pressed_key = pygame.key.get_pressed()
+
         if pressed_key[KEY_UP[self.name]] and self.rect.top > 0:
             self.rect.centery -= ENTITY_PIXEL_MOV[self.name]
 
@@ -30,7 +31,7 @@ class Player(Entity):
     def shoot(self):
         self.shot_delay -= 1
         if self.shot_delay == 0:
-            self.shot_delay = SHOT_DELAY[self.name]
+            self.shot_delay = ENTITY_SHOT_DELAY[self.name]
             pressed_key = pygame.key.get_pressed()
             if pressed_key[KEY_SHOT[self.name]]:
                 return PlayerShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))
